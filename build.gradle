@@ -17,3 +17,23 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+project.configurations.compileOnly.setCanBeResolved(true)
+
+//jar {
+//    manifest {
+//        attributes(
+//                'Class-Path': configurations.compileOnly.files.collect { it.getName() }.join(' '),
+//                'Main-Class': 'com.Application'
+//        )
+//    }
+//}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.galvanize.Application'
+        )
+    }
+}
