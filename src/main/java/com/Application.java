@@ -26,8 +26,16 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("hello world");
+        if (args.length > 0) {
+            System.out.println("hello " + args[0]);
+        }
         isActive("active");
         System.out.println(grade(70));
+        Loop loop1 = new Loop();
+        loop1.printAllNums(45, 50);
+        loop1.printEvenNums(2,6);
+        Table roundTable = new Table();
+        roundTable.setShape("round");
+        System.out.println(roundTable);
     }
 }

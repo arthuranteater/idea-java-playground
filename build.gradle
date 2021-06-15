@@ -5,6 +5,15 @@ plugins {
 group 'com.galvanize'
 version '1.0-SNAPSHOT'
 
+//buildscript {
+//    repositories {
+//        jcenter
+//    }
+//    dependencies {
+//        classpath''
+//    }
+//}
+
 repositories {
     mavenCentral()
 }
@@ -16,24 +25,27 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 project.configurations.compileOnly.setCanBeResolved(true)
 
-//jar {
-//    manifest {
-//        attributes(
-//                'Class-Path': configurations.compileOnly.files.collect { it.getName() }.join(' '),
-//                'Main-Class': 'com.Application'
-//        )
-//    }
-//}
-
 jar {
     manifest {
         attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'com.galvanize.Application'
+                'Class-Path': configurations.compileOnly.files.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.Application'
         )
     }
 }
+
+//jar {
+//    manifest {
+//        attributes(
+//                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+//                'Main-Class': 'com.galvanize.Application'
+//        )
+//    }
+//}
